@@ -39,7 +39,7 @@ class Dog implements DogInterface {
   _name: string = "";
 
   constructor(name: string) {
-    this.name = name;
+    this._name = name;
   }
 
   get name() {
