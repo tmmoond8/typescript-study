@@ -15,5 +15,6 @@
     "noEmit": false,
     "experimentalDecorators": true
   },
-  "include": ["class"]
+  "include": ["class"],
+  "exclude": ["lib.dom.d.ts"]
 }

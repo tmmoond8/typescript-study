@@ -26,29 +26,54 @@ class Iphone implements InstanceInteface {
 Iphone.staticMethod();
 new Iphone().instanceMethod();
 
-interface InstanceInteface {
-  instanceMethod: () => void;
+namespace Static1 {
+  interface InstanceInteface {
+    instanceMethod: () => void;
+  }
+
+  interface StaticInterface {
+    new (): InstanceInteface;
+    staticMethod: () => void;
+    staticField: string;
+  }
+
+  const Banana: StaticInterface = class {
+    static staticField: string = "static field";
+    static staticMethod() {
+      console.log("static method");
+    }
+    instanceMethod() {
+      console.log("instance method");
+    }
+  };
+
+  Banana.staticMethod();
+  console.log(Banana.staticField);
+  new Banana().instanceMethod();
 }
 
-interface StaticInterface {
-  new (): InstanceInteface;
-  staticMethod: () => void;
-  staticField: string;
+namespace Static2 {
+  abstract class StaticInterface {
+    static staticMethod: () => void;
+    static staticField: string;
+    abstract instanceMethod(): void;
+  }
+  interface InstanceInteface extends StaticInterface {}
+
+  const Banana = class implements InstanceInteface {
+    static staticField: string = "static field";
+    static staticMethod() {
+      console.log("static method");
+    }
+    instanceMethod() {
+      console.log("instance method");
+    }
+  };
+
+  Banana.staticMethod();
+  console.log(Banana.staticField);
+  new Banana().instanceMethod;
 }
-
-const Banana: StaticInterface = class {
-  static staticField: string = "static field";
-  static staticMethod() {
-    console.log("static method");
-  }
-  instanceMethod() {
-    console.log("instance method");
-  }
-};
-
-Banana.staticMethod();
-console.log(Banana.staticField);
-new Banana().instanceMethod();
 
 interface LEDLightInterface {
   on: () => void;
