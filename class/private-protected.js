@@ -12,24 +12,27 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     }
     return privateMap.get(receiver);
 };
-var _privateValue;
-class CoffeeMachine {
-    constructor() {
-        this._waterAmount = 0;
-        _privateValue.set(this, 10);
+var PrivateProtected;
+(function (PrivateProtected) {
+    var _privateValue;
+    class CoffeeMachine {
+        constructor() {
+            this._waterAmount = 0;
+            _privateValue.set(this, 10);
+        }
+        setWaterAmount(value) {
+            if (value < 0)
+                throw new Error("물의 양은 음수가 될 수 없습니다.");
+            this._waterAmount = value;
+            __classPrivateFieldSet(this, _privateValue, value * 10);
+        }
+        getWaterAmount() {
+            return this._waterAmount;
+        }
+        getPrivateValue() {
+            return __classPrivateFieldGet(this, _privateValue);
+        }
     }
-    setWaterAmount(value) {
-        if (value < 0)
-            throw new Error("물의 양은 음수가 될 수 없습니다.");
-        this._waterAmount = value;
-        __classPrivateFieldSet(this, _privateValue, value * 10);
-    }
-    getWaterAmount() {
-        return this._waterAmount;
-    }
-    getPrivateValue() {
-        return __classPrivateFieldGet(this, _privateValue);
-    }
-}
-_privateValue = new WeakMap();
-new CoffeeMachine().setWaterAmount(100);
+    _privateValue = new WeakMap();
+    new CoffeeMachine().setWaterAmount(100);
+})(PrivateProtected || (PrivateProtected = {}));
