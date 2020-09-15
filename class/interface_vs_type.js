@@ -1,6 +1,17 @@
 "use strict";
 var Inteface_vs_Type;
 (function (Inteface_vs_Type) {
+    let Type;
+    (function (Type) {
+        const b = {
+            good(x) {
+                return x.toString();
+            },
+            bad(x) {
+                return x;
+            },
+        };
+    })(Type || (Type = {}));
     const mask = {
         color: "White",
         size: 12,
@@ -40,3 +51,50 @@ var Inteface_vs_Type;
     callback("foo");
     console.dir(callback);
 })(Inteface_vs_Type || (Inteface_vs_Type = {}));
+var Intersection_Union;
+(function (Intersection_Union) {
+    const tamm = {
+        name: "tamm",
+        lastModified: new Date(),
+        age: 20,
+        items: [],
+        id: 14,
+    };
+    const a = {
+        name: "a",
+        age: 22,
+        id: 16,
+    };
+    const b = {
+        lastModified: new Date(),
+        items: [],
+        id: 17,
+    };
+    const c = {
+        name: "c",
+        lastModified: new Date(),
+        items: [],
+        id: 18,
+    };
+    const d = {
+        name: "d",
+        age: 20,
+        lastModified: new Date(),
+        id: 19,
+    };
+    const e = {
+        name: "e",
+        age: 20,
+        lastModified: new Date(),
+        items: [],
+        id: 22,
+    };
+    function LoadUserByIntersection(userInfo) {
+        console.log(`id: ${userInfo.id}, age: ${userInfo.age}, name: ${userInfo.name}, items: ${userInfo.items}, lastModified: ${userInfo.lastModified}`);
+    }
+    function LoadUserByUnion(userInfo) {
+        console
+            .log();
+    }
+    LoadUserByIntersection(tamm);
+})(Intersection_Union || (Intersection_Union = {}));

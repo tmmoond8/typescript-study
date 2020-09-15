@@ -39,19 +39,21 @@ namespace Inteface_vs_Type {
       bad(x: number): string;
     };
 
-    type B = A & {
-      good(x: number): string;
-      bad(x: number): number;
-    };
+    type B =
+      | A
+      | {
+          good(x: number): string;
+          bad(x: number): number;
+        };
 
-    // const b: B = {
-    //   good(x: number): string {
-    //     return x.toString();
-    //   },
-    //   bad(x: number): string | number {
-    //     return x % 2 === 0 ? x : x.toString();
-    //   },
-    // };
+    const b: B = {
+      good(x: number): string {
+        return x.toString();
+      },
+      bad(x: number): number {
+        return x;
+      },
+    };
   }
 
   interface Mask {
@@ -126,4 +128,78 @@ namespace Inteface_vs_Type {
 
   callback("foo");
   console.dir(callback);
+}
+
+namespace Intersection_Union {
+  interface User {
+    name: string;
+    age: number;
+    id: number;
+  }
+
+  interface Cart {
+    lastModified: Date;
+    items: string[];
+    id: number;
+  }
+
+  type Intersection = User & Cart;
+  type Union = User | Cart;
+
+  const tamm: Intersection = {
+    name: "tamm",
+    lastModified: new Date(),
+    age: 20,
+    items: [],
+    id: 14,
+  };
+
+  const a: Union = {
+    name: "a",
+    age: 22,
+    id: 16,
+  };
+
+  const b: Union = {
+    lastModified: new Date(),
+    items: [],
+    id: 17,
+  };
+
+  const c: Union = {
+    name: "c",
+    lastModified: new Date(),
+    items: [],
+    id: 18,
+  };
+
+  const d: Union = {
+    name: "d",
+    age: 20,
+    lastModified: new Date(),
+    id: 19,
+  };
+
+  const e: Union = {
+    name: "e",
+    age: 20,
+    lastModified: new Date(),
+    items: [],
+    id: 22,
+  };
+
+  function LoadUserByIntersection(userInfo: Intersection) {
+    console.log(
+      `id: ${userInfo.id}, age: ${userInfo.age}, name: ${userInfo.name}, items: ${userInfo.items}, lastModified: ${userInfo.lastModified}`
+    );
+  }
+
+  function LoadUserByUnion(userInfo: Union) {
+    console
+      .log
+      // `id: ${userInfo.id}, age: ${userInfo.age}, name: ${userInfo.name}, items: ${userInfo.items}, lastModified: ${userInfo.lastModified}`
+      ();
+  }
+
+  LoadUserByIntersection(tamm);
 }
