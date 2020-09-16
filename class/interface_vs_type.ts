@@ -132,15 +132,15 @@ namespace Inteface_vs_Type {
 
 namespace Intersection_Union {
   interface User {
+    id: number;
     name: string;
     age: number;
-    id: number;
   }
 
   interface Cart {
+    id: number;
     lastModified: Date;
     items: string[];
-    id: number;
   }
 
   type Intersection = User & Cart;
@@ -195,10 +195,7 @@ namespace Intersection_Union {
   }
 
   function LoadUserByUnion(userInfo: Union) {
-    console
-      .log
-      // `id: ${userInfo.id}, age: ${userInfo.age}, name: ${userInfo.name}, items: ${userInfo.items}, lastModified: ${userInfo.lastModified}`
-      ();
+    // console.log(`id: ${userInfo.id}, age: ${userInfo.age}, name: ${userInfo.name}, items: ${userInfo.items}, lastModified: ${userInfo.lastModified}`);
   }
 
   LoadUserByIntersection(tamm);
